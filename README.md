@@ -22,7 +22,7 @@ EXPORT API_KEY=myapikey
 lein run
 ```
 
-If the API key is missing, the application will fall back to using pre-OCR'd text under the `resouces` folder. The black and white version of the input image will also be created there.
+If the API key is missing, the application will fall back to using pre-OCR'd text under the `resources` folder. The black and white version of the input image will also be created there.
 
 ## License
 
