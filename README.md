@@ -1,14 +1,32 @@
 # wundernut12
 
-A Clojure library designed to ... well, that part is up to you.
+A solution for the [Wundernut puzzle vol 12](https://github.com/wunderdogsw/wundernut-vol12).
+
+## Requirements
+
+- Java 8 or later
+- [Leiningen](https://leiningen.org/)
+- You also need an API key for [OCR Space's Free OCR API](https://ocr.space/OCRAPI)
 
 ## Usage
 
-FIXME
+- Set the API key to an environment variable `API_KEY`:
+
+``` shell
+EXPORT API_KEY=myapikey
+```
+
+- Run the application:
+
+``` shell
+lein run
+```
+
+If the API key is missing, the application will fall back to using pre-OCR'd text under the `resouces` folder. The black and white version of the input image will also be created there.
 
 ## License
 
-Copyright © 2022 FIXME
+Copyright © 2022 Tuomo Virolainen
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
