@@ -24,14 +24,15 @@
     (str "data:image/jpeg;base64," base64)))
 
 (defn ocr-image! [file]
-  (let [{:keys [status body]} (client/post api-endpoint {:headers {"Content-Type"  "image/jpg"
-                                                                   "apikey" apikey}
-                                                         :form-params {:language "eng"
-                                                                       :filetype "jpg"
-                                                                       :base64Image (encode-image file)}})]
-    (if (= 200 status)
-      (let [parsed-res (json/read-str body :key-fn keyword)]
-        (get-in parsed-res [:ParsedResults 0 :ParsedText]))
+  (try
+    (let [{:keys [body]} (client/post api-endpoint {:headers     {"Content-Type" "image/jpg"
+                                                                  "apikey"       apikey}
+                                                    :form-params {:language    "eng"
+                                                                  :filetype    "jpg"
+                                                                  :base64Image (encode-image file)}})
+          parsed-res     (json/read-str body :key-fn keyword)]
+      (get-in parsed-res [:ParsedResults 0 :ParsedText]))
+    (catch Exception _
       (do
         (println "OCR failed, falling back to pre-OCR'd file.")
         (slurp "resources/text.txt")))))
